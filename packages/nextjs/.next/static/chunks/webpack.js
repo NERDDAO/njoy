@@ -197,7 +197,11 @@
 /******/ 	
 /******/ 	/* webpack/runtime/getFullHash */
 /******/ 	!function() {
+<<<<<<< HEAD
 /******/ 		__webpack_require__.h = function() { return "4e49c1863ddd1a0c"; }
+=======
+/******/ 		__webpack_require__.h = function() { return "5d67b2f80736c8f0"; }
+>>>>>>> d0700bc (Window component page)
 /******/ 	}();
 /******/ 	
 /******/ 	/* webpack/runtime/global */

@@ -5,6 +5,7 @@ import type { NextPage } from "next";
 import { useAccount } from "wagmi";
 import { BugAntIcon, MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import Dropup from "~~/components/DropUp";
+import MintWindow from "~~/components/MintWindow";
 import { Address } from "~~/components/scaffold-eth";
 
 const Home: NextPage = () => {
@@ -63,6 +64,7 @@ const Home: NextPage = () => {
             </div>
             <p>Dropup</p>
             <Dropup contentId="8888" />
+            <MintWindow />
           </div>
         </div>
       </div>
