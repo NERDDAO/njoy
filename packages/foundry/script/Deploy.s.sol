@@ -1,7 +1,7 @@
 //SPDX-License-Identifier: MIT
 pragma solidity ^0.8.19;
 
-import "../contracts/YourContract.sol";
+import "../contracts/NjoyNFT.sol";
 import "./DeployHelpers.s.sol";
 
 contract DeployScript is ScaffoldETHDeploy {
@@ -15,7 +15,8 @@ contract DeployScript is ScaffoldETHDeploy {
             );
         }
         vm.startBroadcast(deployerPrivateKey);
-        YourContract yourContract = new YourContract(
+        NjoyNFT njoyNFT = new NjoyNFT(
+            tokenAddress = "0x7b04236eb1f36e1dce64d5411ffb8da9fbf271f0",
             vm.addr(deployerPrivateKey)
         );
         console.logString(
