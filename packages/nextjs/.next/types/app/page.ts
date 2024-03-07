@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-// File: C:\Users\Nanaki\Documents\Code\njoy\packages\nextjs\app\page.tsx
-=======
-// File: /Users/raigal/tmp/Nerds/Degen/NFT/njoy/packages/nextjs/app/page.tsx
->>>>>>> 1b85d86ba7bbd264cd0d686fe30992aba05daf1c
+// File: /home/at0x/Vaults/njoy/packages/nextjs/app/page.tsx
 import * as entry from '../../../app/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
