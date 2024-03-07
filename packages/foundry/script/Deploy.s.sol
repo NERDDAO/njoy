@@ -16,7 +16,7 @@ contract DeployScript is ScaffoldETHDeploy {
         }
         vm.startBroadcast(deployerPrivateKey);
         NjoyNFT njoyNFT = new NjoyNFT(
-            0x15d26A820A541f0555e4A8E21273460eD982B828,
+            0x708Aa6Fc413AAc360E14a4d77dDf5673a62DB9AC,
             vm.addr(deployerPrivateKey)
         );
         console.logString(
