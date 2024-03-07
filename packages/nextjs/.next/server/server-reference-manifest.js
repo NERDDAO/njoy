@@ -1,5 +1,1 @@
-<<<<<<< HEAD
-self.__RSC_SERVER_MANIFEST="{\n  \"node\": {},\n  \"edge\": {},\n  \"encryptionKey\": \"mAqcfRHGde4P4/1PLMl8jAh2Vt8TBcXsMViiM+/U0Nk=\"\n}"
-=======
-self.__RSC_SERVER_MANIFEST="{\n  \"node\": {},\n  \"edge\": {},\n  \"encryptionKey\": \"pJQHatJ9PnIr5Zjp6Sst0z97crvAGndLJp+tPqdthFw=\"\n}"
->>>>>>> d0700bc (Window component page)
+self.__RSC_SERVER_MANIFEST="{\n  \"node\": {},\n  \"edge\": {},\n  \"encryptionKey\": \"YyCG/BDhzUhfvGOqj0aZPy2JVyohXq5PIlqDiC/r20Q=\"\n}"

@@ -5770,9 +5770,6 @@ details.collapse summary::-webkit-details-marker {
 .cursor-pointer {
   cursor: pointer;
 }
-.resize {
-  resize: both;
-}
 .grid-flow-col {
   grid-auto-flow: column;
 }

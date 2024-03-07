@@ -1,67 +1,92 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useEffect, useRef } from "react";
+import "../styles/dropup.css";
+import "../styles/styles.css";
 import "../styles/window.css";
 
-// Assume your CSS is in this file
-
 const MintWindow = () => {
-  const desktopRef = useRef<HTMLDivElement>(null);
   const windowRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const wwindow = windowRef.current;
-    if (!wwindow || !desktopRef.current) return;
+    if (!wwindow) return;
 
-    const windoww = desktopRef.current.offsetWidth - 1;
-    const windowh = desktopRef.current.offsetHeight - 45;
+    const dragrd = wwindow.querySelector<HTMLDivElement>(".drag-rd");
+    const dragru = wwindow.querySelector<HTMLDivElement>(".drag-ru");
+    const draglu = wwindow.querySelector<HTMLDivElement>(".drag-lu");
+    const dragld = wwindow.querySelector<HTMLDivElement>(".drag-ld");
 
-    const dragrd = wwindow.querySelector(".drag-rd");
-    const dragru = wwindow.querySelector(".drag-ru");
-    const draglu = wwindow.querySelector(".drag-lu");
-    const dragld = wwindow.querySelector(".drag-ld");
-    const dragwindow = wwindow.querySelector(".title");
-
-    const onMouseDown = (event: MouseEvent) => {
-      const shiftX = event.clientX - wwindow.getBoundingClientRect().left;
-      const shiftY = event.clientY - wwindow.getBoundingClientRect().top;
-
-      wwindow.style.zIndex = "10";
-
-      const moveAt = (pageX: number, pageY: number) => {
-        wwindow.style.left = pageX - shiftX + "px";
-        wwindow.style.top = pageY - shiftY + "px";
-      };
+    const resizeMouseDown = (event: MouseEvent, corner: string) => {
+      event.preventDefault();
+      const startX = event.clientX;
+      const startY = event.clientY;
+      const startWidth = wwindow.offsetWidth;
+      const startHeight = wwindow.offsetHeight;
+      const startPosLeft = wwindow.offsetLeft;
+      const startPosTop = wwindow.offsetTop;
 
       const onMouseMove = (event: MouseEvent) => {
-        if (event.pageY < windowh && event.pageY > 1 && event.pageX < windoww && event.pageX > 1)
-          moveAt(event.pageX, event.pageY);
-        else {
-          document.removeEventListener("mousemove", onMouseMove);
-          wwindow.onmouseup = null;
+        let newWidth = startWidth;
+        let newHeight = startHeight;
+        let newLeft = startPosLeft;
+        let newTop = startPosTop;
+
+        switch (corner) {
+          case "rd":
+            newWidth = startWidth + event.clientX - startX;
+            newHeight = startHeight + event.clientY - startY;
+            break;
+          case "ru":
+            newWidth = startWidth + event.clientX - startX;
+            newHeight = startHeight - (event.clientY - startY);
+            newTop = startPosTop + (event.clientY - startY);
+            break;
+          case "lu":
+            newWidth = startWidth - (event.clientX - startX);
+            newHeight = startHeight - (event.clientY - startY);
+            newLeft = startPosLeft + (event.clientX - startX);
+            newTop = startPosTop + (event.clientY - startY);
+            break;
+          case "ld":
+            newWidth = startWidth - (event.clientX - startX);
+            newHeight = startHeight + event.clientY - startY;
+            newLeft = startPosLeft + (event.clientX - startX);
+            break;
+        }
+
+        if (newWidth > 100) {
+          wwindow.style.width = newWidth + "px";
+          wwindow.style.left = newLeft + "px";
+        }
+        if (newHeight > 100) {
+          wwindow.style.height = newHeight + "px";
+          wwindow.style.top = newTop + "px";
         }
       };
 
-      document.addEventListener("mousemove", onMouseMove);
-
-      wwindow.onmouseup = () => {
-        wwindow.style.zIndex = "9";
+      const onMouseUp = () => {
         document.removeEventListener("mousemove", onMouseMove);
-        wwindow.onmouseup = null;
+        document.removeEventListener("mouseup", onMouseUp);
       };
+
+      document.addEventListener("mousemove", onMouseMove);
+      document.addEventListener("mouseup", onMouseUp);
     };
 
-    // if (dragwindow) {
-    //   dragwindow.addEventListener("mousedown", onMouseDown);
-    // }
-    // return () => {
-    //   if (dragwindow) {
-    //     dragwindow.removeEventListener("mousedown", onMouseDown);
-    //   }
-    // };
+    dragrd?.addEventListener("mousedown", event => resizeMouseDown(event, "rd"));
+    dragru?.addEventListener("mousedown", event => resizeMouseDown(event, "ru"));
+    draglu?.addEventListener("mousedown", event => resizeMouseDown(event, "lu"));
+    dragld?.addEventListener("mousedown", event => resizeMouseDown(event, "ld"));
+
+    return () => {
+      dragrd?.removeEventListener("mousedown", event => resizeMouseDown(event, "rd"));
+      dragru?.removeEventListener("mousedown", event => resizeMouseDown(event, "ru"));
+      draglu?.removeEventListener("mousedown", event => resizeMouseDown(event, "lu"));
+      dragld?.removeEventListener("mousedown", event => resizeMouseDown(event, "ld"));
+    };
   }, []);
 
   return (
-    <div ref={desktopRef} id="desktop" className="bg desktop">
+    <div id="desktop" className="bg desktop">
       <div ref={windowRef} id="window" className="window">
         <div className="title no-select" id="windowTitle">
           <img className="img" src="public/Internet_Explorer_6_logo.png" alt="" />
