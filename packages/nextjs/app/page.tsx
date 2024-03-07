@@ -9,7 +9,6 @@ import { Address } from "~~/components/scaffold-eth";
 
 const Home: NextPage = () => {
   const { address: connectedAddress } = useAccount();
-
   return (
     <>
       <div className="flex items-center flex-col flex-grow pt-10">

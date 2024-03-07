@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 // File: C:\Users\Nanaki\Documents\Code\njoy\packages\nextjs\app\layout.tsx
-=======
-// File: /Users/raigal/tmp/Nerds/Degen/NFT/njoy/packages/nextjs/app/layout.tsx
->>>>>>> 1b85d86ba7bbd264cd0d686fe30992aba05daf1c
 import * as entry from '../../../app/layout.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
