@@ -1,13 +1,3 @@
-body, html {
-    height: 100%;
-    overflow-x: hidden; 
-    overflow-y: hidden;
-}
-
-*{
-    font-family: tahoma;
-}
-
 .bg{
     background-image: url("../public/winxpwallpaper.jpg");
     background-color: darkslategrey;
@@ -51,15 +41,6 @@ body, html {
     margin-left: -7px;
 }
 
-.navbar{
-    background-color: #265DDC;
-    /*Shadow*/
-    -webkit-box-shadow: 0px -4px 16px -1px rgba(0,0,0,1); 
-    box-shadow: 0px -4px 16px -1px rgba(0,0,0,1);
-    /*Inset Shadow*/
-    -webkit-box-shadow: inset 0px 8px 10px -1px rgba(255,255,255,0.3); 
-    box-shadow: inset 0px 8px 10px -1px rgba(255,255,255,0.3);
-}
 
 .start-btn{
     cursor: pointer;
