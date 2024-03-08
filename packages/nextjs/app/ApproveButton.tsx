@@ -48,8 +48,7 @@ const ApproveButton: React.FC<ApproveButtonProps> = ({ contractName, spenderAddr
     };
 
     return (
-        <div className="border-2 bg-cover p-4  h-full font-bold text-2xl text-white">
-
+        <div className="relative flex flex-col snap-center  w-full">
 
             <div className=" justify-items-center h-full w-full flex flex-col snap-center relative top-0">
                 <div className="relative bg-[url(/enjoy.png)] bg-cover bg-no-repeat h-24 w-52 top-0 left-1/2 -ml-20" />
@@ -64,28 +63,10 @@ const ApproveButton: React.FC<ApproveButtonProps> = ({ contractName, spenderAddr
                         {isMining ? "Approving..." : "Approve"}
                     </button>
 
-                    <label>
-                        Amount<input></input>
-                    </label>
-                    <p className="my-2 font-medium">Connected Address:</p>
-                    <Address address={connectedAddress} />
-
-                    <button onClick={() => Howler.stop()}>MUTE</button>
-                </ul>
-
-
-
-                <p className="relative align-middle justify-center p-12 backdrop-blur-lg">
-                    <span className="text-yellow-400"> GM ENJOYOORS</span> THE NERDS ARE HERE!!!
-                    WE SAW YOU ENJOY $ENJOY SO WE MADE SOME NFTS SO YOU CAN ENJOY WHILE YOU ENJOY!!1!!
-
-                    HERE'S THE DEAL: WE'RE ONLY ACCEPTING $ENJOY AND WILL USE IT TO CREATE SOME FARMS SO YOU CAN EARN ENJOY WHILE YOU $ENJOY OUR NFTS. ENJOY!</p>
-
-
-            </div>
-
-        </div >
-
+            <label className="w-80 text-rose-700 bg-sky-400 my-4 pb-5 rounded-lg border-4 ">
+                Amount<input className="text-sky-400 bg-rose-700 mx-4"></input>
+            </label>
+        </div>
     );
 };
 
