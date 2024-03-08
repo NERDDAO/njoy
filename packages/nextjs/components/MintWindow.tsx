@@ -129,36 +129,21 @@ const MintWindow = () => {
                 <div className="drag-ru"></div>
                 <div className="drag-lu"></div>
                 <div className="drag-ld"></div>
-                <div className="content">
-                    <br />
-                    Gm Enjoyers
-                    <br />
+                <div className="content bg-[url(/ture.jpg)] bg-cover">
 
-                    <div className="border-2 bg-cover p-4 bg-[url(/ture.jpg)] text-white">Mint here
-                        <div className="h-1/3 w-full flex-flex-row">
-                            <Splide hasTrack={false} aria-label="...">
-                                <SplideTrack>
-                                    <SplideSlide>...</SplideSlide>
-                                </SplideTrack>
+                    <div className="border-2 bg-cover p-4  h-full text-white">
+                        <div className="align-middle h-full w-full flex-flex-col">
+                            <div className="relative bg-[url(/enjoy.png)] bg-cover bg-no-repeat h-24 w-52 top-0 left-1/2 -ml-20" />
+                            <ApproveButton contractName={"Token"} spenderAddress={"0x0A65EB7B31Ad4b0b9fd73cC0e2bb1788eBb393b8"} />
 
 
-                                <div className="splide__progress">
-                                    <div className="splide__progress__bar" />
-                                </div>
-
-
-                                <button className="splide__toggle" type="button">
-                                    <span className="splide__toggle__play">Play</span>
-                                    <span className="splide__toggle__pause">Pause</span>
-                                </button>
-                            </Splide>
                         </div>
 
                     </div>
-                    <ApproveButton contractName={"Token"} spenderAddress={"0x0A65EB7B31Ad4b0b9fd73cC0e2bb1788eBb393b8"} />
+
                 </div>
             </div>
-        </div>
+        </div >
     );
 };
 

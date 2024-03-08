@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 import { ethers } from "ethers";
 import { useScaffoldContractWrite } from "~~/hooks/scaffold-eth/useScaffoldContractWrite";
 
@@ -24,9 +25,16 @@ const ApproveButton: React.FC<ApproveButtonProps> = ({ contractName, spenderAddr
     };
 
     return (
-        <button className="border-2 bg-cover p-4 bg-[url(/vwave.jpg)]" onClick={handleApprove} disabled={isMining}>
-            {isMining ? "Approving..." : "Approve"}
-        </button>
+        <div className="flex flex-col">
+            <div className="p-12 bg-backdrop-blur-20 border-6 border-black">
+                <Image src="/temp.jpg" className="relative left-1/2 -ml-28" alt="Enjoy" width={252} height={400} />
+            </div>
+            <button className="relative  bg-cover bg-no-repeat h-24 w-52 bottom-0 left-1/2 -ml-20 border-2 bg-cover p-4 bg-[url(/vwave.jpg)] text-blue-500" onClick={handleApprove} disabled={isMining}>
+                {isMining ? "Approving..." : "Approve"}
+            </button>
+
+            <label className="relative left-1/2 -ml-32 top-12" >Amount<input></input></label>
+        </div>
     );
 };
 
