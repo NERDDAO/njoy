@@ -45,7 +45,10 @@ const MintButton: React.FC<MintButtonProps> = ({ contractName, mintPrice, value 
     };
 
     return (
-        <div>
+        <div className="flex flex-row p-4">
+            <button onClick={() => handleMint()}>
+                MINT
+            </button>
             <input
                 type="number"
                 className="relative overflow-hidden w-1/3"
@@ -53,11 +56,11 @@ const MintButton: React.FC<MintButtonProps> = ({ contractName, mintPrice, value 
                 onChange={(e) => setMintAmount(parseInt(e.target.value, 10))}
                 min="1"
             /><br />
-            <button onClick={handleUpArrowClick} disabled={isMinting || mintAmount < 1}>
+            <button className="bg-[url(/up-arrow.png)]" onClick={handleUpArrowClick} disabled={isMinting || mintAmount < 1}>
                 ▲
             </button>
-            <button onClick={handleDownArrowClick} disabled={isMinting || mintAmount < 1}>
-                ▲
+            <button className="bg-[url(/down-arrow.png)]" onClick={handleDownArrowClick} disabled={isMinting || mintAmount < 1}>
+
             </button>
         </div>
     );
