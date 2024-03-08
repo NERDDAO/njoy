@@ -1,8 +1,8 @@
 import React, { useEffect, useRef } from "react";
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
 import { hardhat } from "viem/chains";
-import { CurrencyDollarIcon, MagnifyingGlassIcon, HeartIcon } from "@heroicons/react/24/outline";
+import { CurrencyDollarIcon, HeartIcon, MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { SwitchTheme } from "~~/components/SwitchTheme";
 import { BuidlGuidlLogo } from "~~/components/assets/BuidlGuidlLogo";
 import { Faucet } from "~~/components/scaffold-eth";
@@ -46,16 +46,14 @@ export const Footer = () => {
               <Image src="/winxpstart.png" width="110" height="35" alt="" className="start-btn no-margin-navbar" />
             </div>
             <div ref={dropupContentRef} className="dropup-content" id="start-content">
-              <div className="start-title">
-                <div className="start-title-img">
-                  <Image width="30" height="30" src="/chess.bmp" alt="" />
-                </div>
-                <div>
-                  <b>User</b>
-                </div>
-              </div>
               <div className="start-span"></div>
               <div className="start-linklist-left">
+                <a className="start-link" target="_blank" href="https://enjoy.tech/">
+                  <div className="start-option">
+                    <Image width="30" height="30" src="/chess.bmp" alt="" />
+                    User
+                  </div>
+                </a>
                 <a className="start-link" target="_blank" href="https://enjoy.tech/">
                   <div className="start-option">
                     <Image width="30" height="30" src="/zora.png" alt="" />
@@ -74,14 +72,12 @@ export const Footer = () => {
                     Troll line
                   </div>
                 </a>
-              </div>
-              <div className="start-linklist-right">
-                <div className="start-option">
-                  <Image width="30" height="30" src="/Internet_Explorer_6_logo.png" alt="" />
-                  <a className="start-link" target="_blank" href="https://pixabay.com/images/search/cute%20cat/">
+                <a className="start-link" target="_blank" href="https://pixabay.com/images/search/cute%20cat/">
+                  <div className="start-option">
+                    <Image width="30" height="30" src="/Internet_Explorer_6_logo.png" alt="" />
                     cat pix
-                  </a>
-                </div>
+                  </div>
+                </a>
               </div>
               <div className="start-footer"></div>
             </div>
