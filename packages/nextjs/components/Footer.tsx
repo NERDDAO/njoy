@@ -21,7 +21,7 @@ export const Footer = () => {
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (dropupContentRef.current && !dropupContentRef.current.contains(event.target as Node)) {
-        dropupContentRef.current.classList.remove("dropup-show");
+        dropupContentRef.current.classList.remove("dropup-content");
       }
     };
 

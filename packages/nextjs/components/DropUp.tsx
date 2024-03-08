@@ -17,7 +17,7 @@ const Dropup: React.FC<DropupProps> = ({ contentId }) => {
 
       if (
         dropupcontent.current &&
-        dropupcontent.current.classList.contains("dropup-show") &&
+        dropupcontent.current.classList.contains("dropup-content") &&
         targetElement &&
         !targetElement.classList.contains("start-btn") &&
         targetElement.id !== dropupcontent.current.id &&
