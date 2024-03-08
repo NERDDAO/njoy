@@ -49,47 +49,44 @@ const ApproveButton: React.FC<ApproveButtonProps> = ({ contractName, spenderAddr
     };
 
     return (
-        <div className="border-2 bg-cover p-4  h-full font-bold text-2xl text-white">
+        <div className="absolute ml-4 flex flex-row  bg-cover p-4  h-full font-bold text-2xl text-white">
 
 
-            <div className=" justify-items-center h-full w-full flex flex-col snap-center relative top-0">
+            <p className="relative align-middle top-0 w-1/3 justify-center p-12 backdrop-blur-lg">
+                <span className="text-yellow-400"> GM ENJOYOORS</span> THE NERDS ARE HERE!!!
+                WE SAW YOU ENJOY $ENJOY SO WE MADE SOME NFTS SO YOU CAN ENJOY WHILE YOU ENJOY!!1!!
 
-                <ul className="relative flex flex-col">
-                    <div className="relative bg-[url(/enjoy.png)] bg-cover bg-no-repeat h-24 w-52 top-0 left-1/2 -ml-20" />
-                    <div className="absolute bg-[url(/backdrop.jpg)] p-12 pt-32 bg-cover bg-no-repeat h-96 w-96 top-0 left-1/3 ml-16" >
-                        <Image src="/temp.jpg" alt="backdrop" width={384} height={384} />
-                        <button
-                            className="relative bg-no-repeat h-24 w-52 bottom-0  border-2 bg-cover p-4 bg-[url(/vwave.jpg)] text-blue-500"
-                            onClick={handleApprove}
-                            disabled={isMining}
-                        >
-                            {isMining ? "Approving..." : "Approve"}
-                        </button>
-                        <label>
-                            Amount<input className="text-black"></input>
-                        </label>
-                        <p className="my-2 font-medium">Connected Address:</p>
-                        <Address address={connectedAddress} />
+                HERE'S THE DEAL: WE'RE ONLY ACCEPTING $ENJOY AND WILL USE IT TO CREATE SOME FARMS SO YOU CAN EARN ENJOY WHILE YOU $ENJOY OUR NFTS. ENJOY!</p>
 
-                        <button onClick={() => Howler.stop()}>MUTE</button>
+            <div className="relative bg-[url(/backdrop.jpg)] p-12  bg-cover bg-no-repeat h-96 w-96 top-0 flex flex-col" >
 
-                    </div>
+                <Image src="/temp.jpg" alt="backdrop" className="relative top-12" width={384} height={384} />
+                <Image src="/enjoy.png" className="relative -top-20" alt="backdrop" width={384} height={384} />
 
-
-                </ul>
-
-
-
-                <p className="relative align-middle top-0 w-1/3 justify-center p-12 backdrop-blur-lg">
-                    <span className="text-yellow-400"> GM ENJOYOORS</span> THE NERDS ARE HERE!!!
-                    WE SAW YOU ENJOY $ENJOY SO WE MADE SOME NFTS SO YOU CAN ENJOY WHILE YOU ENJOY!!1!!
-
-                    HERE'S THE DEAL: WE'RE ONLY ACCEPTING $ENJOY AND WILL USE IT TO CREATE SOME FARMS SO YOU CAN EARN ENJOY WHILE YOU $ENJOY OUR NFTS. ENJOY!</p>
-
-
+                <button
+                    className="relative bg-no-repeat h-24 w-52  border-2 bg-cover -top-28 left-12 p-4 bg-[url(/vwave.jpg)] text-blue-500 pt-12"
+                    onClick={handleApprove}
+                    disabled={isMining}
+                >
+                    {isMining ? "Approving..." : "Approve"}
+                </button>
             </div>
 
-        </div >
+            <ul className="backdrop-blur-lg relative items-center flex flex-col pt-24 p-12 align-middle snap-center">
+
+                <label>
+                    Amount<input className="text-black"></input>
+                </label>
+                <p className="my-2 font-medium">Connected Address:</p>
+                <Address address={connectedAddress} />
+
+                <button onClick={() => Howler.stop()}>MUTE</button>
+
+            </ul>
+
+
+        </div>
+
 
     );
 };
