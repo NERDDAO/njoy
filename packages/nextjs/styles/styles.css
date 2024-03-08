@@ -47,8 +47,6 @@
 }
 
 .dropup-content{
-    height: 60vh;
-    width: 30vw;
     min-width: 400px !important;
     padding: 3px;
     border-top-left-radius: 1%;

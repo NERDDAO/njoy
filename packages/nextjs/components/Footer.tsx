@@ -2,8 +2,7 @@ import React, { useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { hardhat } from "viem/chains";
-import { CurrencyDollarIcon, MagnifyingGlassIcon } from "@heroicons/react/24/outline";
-import { HeartIcon } from "@heroicons/react/24/outline";
+import { CurrencyDollarIcon, MagnifyingGlassIcon, HeartIcon } from "@heroicons/react/24/outline";
 import { SwitchTheme } from "~~/components/SwitchTheme";
 import { BuidlGuidlLogo } from "~~/components/assets/BuidlGuidlLogo";
 import { Faucet } from "~~/components/scaffold-eth";
@@ -40,13 +39,13 @@ export const Footer = () => {
   return (
     <div>
       {/* DropUp Content */}
-      <div ref={dropupContentRef} className="dropflex w-full">
+      <div className="dropflex w-full">
         <nav className="navbar dropnav fixed-bottom navbar-light no-padding no-select">
           <div className="dropup no-margin-navbar">
             <div onClick={toggleUp} className="start-btn no-padding">
               <Image src="/winxpstart.png" width="110" height="35" alt="" className="start-btn no-margin-navbar" />
             </div>
-            <div className="dropup-content" id="start-content">
+            <div ref={dropupContentRef} className="dropup-content" id="start-content">
               <div className="start-title">
                 <div className="start-title-img">
                   <Image width="30" height="30" src="/chess.bmp" alt="" />
