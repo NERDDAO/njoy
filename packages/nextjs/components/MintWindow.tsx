@@ -3,6 +3,7 @@ import "../styles/dropup.css";
 import "../styles/styles.css";
 import "../styles/window.css";
 import ApproveButton from "~~/app/ApproveButton";
+import { Splide, SplideSlide, SplideTrack } from '@splidejs/react-splide';
 
 const MintWindow = () => {
     const windowRef = useRef<HTMLDivElement>(null);
@@ -132,7 +133,28 @@ const MintWindow = () => {
                     <br />
                     Gm Enjoyers
                     <br />
-                    <a href="" className="border-2 bg-cover p-4 bg-[url(/ture.jpg)] text-white">Mint here</a>
+
+                    <div className="border-2 bg-cover p-4 bg-[url(/ture.jpg)] text-white">Mint here
+                        <div className="h-1/3 w-full flex-flex-row">
+                            <Splide hasTrack={false} aria-label="...">
+                                <SplideTrack>
+                                    <SplideSlide>...</SplideSlide>
+                                </SplideTrack>
+
+
+                                <div className="splide__progress">
+                                    <div className="splide__progress__bar" />
+                                </div>
+
+
+                                <button className="splide__toggle" type="button">
+                                    <span className="splide__toggle__play">Play</span>
+                                    <span className="splide__toggle__pause">Pause</span>
+                                </button>
+                            </Splide>
+                        </div>
+
+                    </div>
                     <ApproveButton contractName={"Token"} spenderAddress={"0x0A65EB7B31Ad4b0b9fd73cC0e2bb1788eBb393b8"} />
                 </div>
             </div>
