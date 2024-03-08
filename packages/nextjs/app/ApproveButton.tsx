@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { ethers } from "ethers";
 import { Howl, Howler } from "howler";
 import { useAccount } from "wagmi";
 import { Address } from "~~/components/scaffold-eth";
 import { useScaffoldContractWrite } from "~~/hooks/scaffold-eth/useScaffoldContractWrite";
+import { useScaffoldContractRead } from "~~/hooks/scaffold-eth";
 
 type ApproveButtonProps = {
     contractName: string; // This should match the key used in your contract configurations
@@ -15,12 +16,45 @@ const ApproveButton: React.FC<ApproveButtonProps> = ({ contractName, spenderAddr
 
     const { address: connectedAddress } = useAccount();
     const [stakeAmount, setStakeAmount] = useState(0);
+    const [isApproved, setIsApproved] = useState(false);
+    const token = '0xEF122616CC60F69F1F333780FA1Cb2d8e7F3C66A'
 
     const mint = useScaffoldContractWrite({
         contractName: "gaslite_nJoy",
         functionName: "publicMint",
         args: [BigInt(stakeAmount)],
     });
+
+    const allowance = useScaffoldContractRead({
+        contractName: "Token",
+        functionName: "allowance",
+        args: [connectedAddress, token],
+    });
+    const balance = useScaffoldContractRead({
+        contractName: "Token",
+        functionName: "balanceOf",
+        args: [connectedAddress],
+    });
+
+    const price = useScaffoldContractRead({
+        contractName: "gaslite_nJoy",
+        functionName: "price",
+    });
+
+    useEffect(() => {
+        if (allowance.data && allowance.data > BigInt(0)) {
+            setIsApproved(true);
+        }
+    }, [connectedAddress, allowance]);
+
+
+    const toHumanReadable = (num: number) => {
+        const amount = num / 1000000000000000000;
+        if (isNaN(amount)) {
+            return 0;
+        }
+        return amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    };
 
 
     const callDeposit = async () => {
@@ -41,6 +75,7 @@ const ApproveButton: React.FC<ApproveButtonProps> = ({ contractName, spenderAddr
         sound.play();
         try {
             const tx = await writeAsync();
+            setIsApproved(true);
             console.log("Transaction result:", tx);
         } catch (error) {
             console.error("Approval error:", error);
@@ -68,7 +103,9 @@ const ApproveButton: React.FC<ApproveButtonProps> = ({ contractName, spenderAddr
                     onClick={handleApprove}
                     disabled={isMining}
                 >
+
                     {isMining ? "Approving..." : "Approve"}
+                    {isApproved && "Mint!"}
                 </button>
             </div>
 
@@ -79,6 +116,8 @@ const ApproveButton: React.FC<ApproveButtonProps> = ({ contractName, spenderAddr
                 </label>
                 <p className="my-2 font-medium">Connected Address:</p>
                 <Address address={connectedAddress} />
+                BALANCE:{toHumanReadable(Number(balance.data))}
+                PRICE:{toHumanReadable(Number(price.data))}
 
                 <button onClick={() => Howler.stop()}>MUTE</button>
 
