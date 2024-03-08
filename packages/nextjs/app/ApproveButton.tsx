@@ -26,6 +26,7 @@ const ApproveButton: React.FC<ApproveButtonProps> = ({ contractName, spenderAddr
     const callDeposit = async () => {
         await mint.writeAsync();
     };
+
     var sound = new Howl({
         src: ['clicky.mp3']
     });
@@ -52,30 +53,34 @@ const ApproveButton: React.FC<ApproveButtonProps> = ({ contractName, spenderAddr
 
 
             <div className=" justify-items-center h-full w-full flex flex-col snap-center relative top-0">
-                <div className="relative bg-[url(/enjoy.png)] bg-cover bg-no-repeat h-24 w-52 top-0 left-1/2 -ml-20" />
-                <div className="relative bg-[url(/backdrop.jpg)] bg-fill bg-no-repeat h-64 w-52 top-0 left-1/2 -ml-20" >
-                </div>
-                <ul className="relative">
-                    <button
-                        className="bg-no-repeat h-24 w-52 bottom-0  border-2 bg-cover p-4 bg-[url(/vwave.jpg)] text-blue-500"
-                        onClick={handleApprove}
-                        disabled={isMining}
-                    >
-                        {isMining ? "Approving..." : "Approve"}
-                    </button>
 
-                    <label>
-                        Amount<input></input>
-                    </label>
-                    <p className="my-2 font-medium">Connected Address:</p>
-                    <Address address={connectedAddress} />
+                <ul className="relative flex flex-col">
+                    <div className="relative bg-[url(/enjoy.png)] bg-cover bg-no-repeat h-24 w-52 top-0 left-1/2 -ml-20" />
+                    <div className="absolute bg-[url(/backdrop.jpg)] p-12 pt-32 bg-cover bg-no-repeat h-96 w-96 top-0 left-1/3 ml-16" >
+                        <Image src="/temp.jpg" alt="backdrop" width={384} height={384} />
+                        <button
+                            className="relative bg-no-repeat h-24 w-52 bottom-0  border-2 bg-cover p-4 bg-[url(/vwave.jpg)] text-blue-500"
+                            onClick={handleApprove}
+                            disabled={isMining}
+                        >
+                            {isMining ? "Approving..." : "Approve"}
+                        </button>
+                        <label>
+                            Amount<input className="text-black"></input>
+                        </label>
+                        <p className="my-2 font-medium">Connected Address:</p>
+                        <Address address={connectedAddress} />
 
-                    <button onClick={() => Howler.stop()}>MUTE</button>
+                        <button onClick={() => Howler.stop()}>MUTE</button>
+
+                    </div>
+
+
                 </ul>
 
 
 
-                <p className="relative align-middle justify-center p-12 backdrop-blur-lg">
+                <p className="relative align-middle top-0 w-1/3 justify-center p-12 backdrop-blur-lg">
                     <span className="text-yellow-400"> GM ENJOYOORS</span> THE NERDS ARE HERE!!!
                     WE SAW YOU ENJOY $ENJOY SO WE MADE SOME NFTS SO YOU CAN ENJOY WHILE YOU ENJOY!!1!!
 
