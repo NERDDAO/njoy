@@ -18,7 +18,7 @@ const ApproveButton: React.FC<ApproveButtonProps> = ({ contractName, spenderAddr
     const [stakeAmount, setStakeAmount] = useState(0);
     const [isApproved, setIsApproved] = useState(false);
     const token = '0xEF122616CC60F69F1F333780FA1Cb2d8e7F3C66A'
-    const spender = '0x0A65EB7B31Ad4b0b9fd73cC0e2bb1788eBb393b8'
+    const spender = '0x2Cd4fD0d124Ed30186B13ef96F7A8671d3cE6CCB'
 
     const mint = useScaffoldContractWrite({
         contractName: "gaslite_nJoy",
@@ -127,12 +127,11 @@ const ApproveButton: React.FC<ApproveButtonProps> = ({ contractName, spenderAddr
 
             <ul className="backdrop-blur-lg relative items-center flex flex-col pt-24 p-12 align-middle snap-center">
 
-                <label>
-                </label>
+                BALANCE:{toHumanReadable(Number(balance.data))}<br />
+                PRICE:{toHumanReadable(Number(price.data))}
                 <p className="my-2 font-medium">Connected Address:</p>
                 <Address address={connectedAddress} />
-                BALANCE:{toHumanReadable(Number(balance.data))}
-                PRICE:{toHumanReadable(Number(price.data))}
+
 
                 <button onClick={() => Howler.stop()}>MUTE</button>
 
