@@ -17,7 +17,6 @@ const ApproveButton: React.FC<ApproveButtonProps> = ({ contractName, spenderAddr
     const { address: connectedAddress } = useAccount();
     const [stakeAmount, setStakeAmount] = useState(0);
     const [isApproved, setIsApproved] = useState(false);
-    const token = '0xEF122616CC60F69F1F333780FA1Cb2d8e7F3C66A'
     const spender = '0x2Cd4fD0d124Ed30186B13ef96F7A8671d3cE6CCB'
 
     const mint = useScaffoldContractWrite({
