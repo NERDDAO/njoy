@@ -18,6 +18,7 @@ const ApproveButton: React.FC<ApproveButtonProps> = ({ contractName, spenderAddr
     const [stakeAmount, setStakeAmount] = useState(0);
     const [isApproved, setIsApproved] = useState(false);
     const token = '0xEF122616CC60F69F1F333780FA1Cb2d8e7F3C66A'
+    const spender = '0x0A65EB7B31Ad4b0b9fd73cC0e2bb1788eBb393b8'
 
     const mint = useScaffoldContractWrite({
         contractName: "gaslite_nJoy",
@@ -28,7 +29,7 @@ const ApproveButton: React.FC<ApproveButtonProps> = ({ contractName, spenderAddr
     const allowance = useScaffoldContractRead({
         contractName: "Token",
         functionName: "allowance",
-        args: [connectedAddress, token],
+        args: [connectedAddress, spender],
     });
     const balance = useScaffoldContractRead({
         contractName: "Token",
@@ -44,7 +45,9 @@ const ApproveButton: React.FC<ApproveButtonProps> = ({ contractName, spenderAddr
     useEffect(() => {
         if (allowance.data && allowance.data > BigInt(0)) {
             setIsApproved(true);
+            return
         }
+        setIsApproved(false);
     }, [connectedAddress, allowance]);
 
 
@@ -75,10 +78,14 @@ const ApproveButton: React.FC<ApproveButtonProps> = ({ contractName, spenderAddr
         sound.play();
         try {
             const tx = await writeAsync();
-            setIsApproved(true);
+            if (tx) {
+                setIsApproved(true);
+            }
             console.log("Transaction result:", tx);
         } catch (error) {
             console.error("Approval error:", error);
+
+            setIsApproved(false);
         }
 
     };
@@ -97,28 +104,30 @@ const ApproveButton: React.FC<ApproveButtonProps> = ({ contractName, spenderAddr
 
                 <Image src="/temp.png" alt="backdrop" className="relative top-0" width={384} height={384} />
 
-                <button
-                    className="relative bg-no-repeat h-24 w-52  border-2 bg-cover top-2 left-12 p-4 bg-[url(/vwave.jpg)] text-blue-500 pt-12"
-                    onClick={handleApprove}
-                    disabled={isMining}
-                >
+                {!isApproved &&
+                    <button
+                        className="relative bg-no-repeat h-24 w-52  border-2 bg-cover top-2 left-12 p-4 bg-[url(/vwave.jpg)] text-blue-500 pt-12"
+                        onClick={handleApprove}
+                        disabled={isMining}
+                    >
 
-                    {isMining ? "Approving..." : "Approve"}
-                </button>
-                <button
-                    className="relative bg-no-repeat h-24 w-52  border-2 bg-cover top-2 left-12 p-4 bg-[url(/car.jpg)] text-blue-500 pt-2"
-                    disabled={isMining}
-                >
+                        {isMining ? "Approving..." : "Approve"}
+                    </button>
+                }
+                {isApproved &&
+                    <button
+                        className="relative bg-no-repeat h-24 w-52  border-2 bg-cover top-2 left-12 p-4 bg-[url(/car.jpg)] text-blue-500 pt-2"
+                        disabled={isMining}
+                    >
 
-                    <MintButton contractName={"gaslite_nJoy"} mintAmount={1} mintPrice={"0"} value={"0"} />
-                </button>
-
+                        <MintButton contractName={"gaslite_nJoy"} mintAmount={1} mintPrice={"0"} value={"0"} />
+                    </button>
+                }
             </div>
 
             <ul className="backdrop-blur-lg relative items-center flex flex-col pt-24 p-12 align-middle snap-center">
 
                 <label>
-                    Amount<input className="text-black"></input>
                 </label>
                 <p className="my-2 font-medium">Connected Address:</p>
                 <Address address={connectedAddress} />

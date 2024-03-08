@@ -9,17 +9,28 @@ type MintButtonProps = {
     value: string;
 };
 
-const MintButton: React.FC<MintButtonProps> = ({ contractName, mintAmount, mintPrice, value }) => {
+const MintButton: React.FC<MintButtonProps> = ({ contractName, mintPrice, value }) => {
     const [mintAmountSelected, setMintAmountSelected] = useState<number>(1); // Default mint amount is 1
     //   const mintPrice = "0.02"; // Default mint price per token in ETH
     const [isMinting, setIsMinting] = useState(false);
 
+    const [mintAmount, setMintAmount] = useState(1);
     const { writeAsync } = useScaffoldContractWrite({
         contractName: "gaslite_nJoy",
         functionName: "publicMint",
         args: [BigInt(mintAmount)],
         value: BigInt((parseFloat(mintPrice) * mintAmountSelected).toString()),
     });
+
+
+    const handleUpArrowClick = () => {
+        setMintAmount(prevAmount => prevAmount + 1);
+    }
+    const handleDownArrowClick = () => {
+        setMintAmount(prevAmount => prevAmount - 1);
+    }
+
+
 
     const handleMint = async () => {
         setIsMinting(true);
@@ -39,11 +50,14 @@ const MintButton: React.FC<MintButtonProps> = ({ contractName, mintAmount, mintP
                 type="number"
                 className="relative overflow-hidden w-1/3"
                 value={mintAmount}
-                onChange={e => setMintAmountSelected(parseInt(e.target.value, 10))}
+                onChange={(e) => setMintAmount(parseInt(e.target.value, 10))}
                 min="1"
             /><br />
-            <button onClick={handleMint} disabled={isMinting || mintAmount < 1}>
-                {isMinting ? "Minting..." : "Mint"}
+            <button onClick={handleUpArrowClick} disabled={isMinting || mintAmount < 1}>
+                ▲
+            </button>
+            <button onClick={handleDownArrowClick} disabled={isMinting || mintAmount < 1}>
+                ▲
             </button>
         </div>
     );
