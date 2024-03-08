@@ -106,16 +106,15 @@ const ApproveButton: React.FC<ApproveButtonProps> = ({ contractName, spenderAddr
                     {isMining ? "Approving..." : "Approve"}
                 </button>
                 <button
-                    className="relative bg-no-repeat h-24 w-52  border-2 bg-cover top-2 left-12 p-4 bg-[url(/car.jpg)] text-blue-500 pt-12"
-                    onClick={handleApprove}
+                    className="relative bg-no-repeat h-24 w-52  border-2 bg-cover top-2 left-12 p-4 bg-[url(/car.jpg)] text-blue-500 pt-2"
                     disabled={isMining}
                 >
 
-                    {isMining ? "Minting..." : "Mint"}
+                    <MintButton contractName={"gaslite_nJoy"} mintAmount={1} mintPrice={"0"} value={"0"} />
                 </button>
+
             </div>
 
-            <MintButton contractName={"gaslite_nJoy"} mintAmount={1} mintPrice={"0"} value={"0"} />
             <ul className="backdrop-blur-lg relative items-center flex flex-col pt-24 p-12 align-middle snap-center">
 
                 <label>
