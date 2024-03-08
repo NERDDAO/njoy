@@ -5,6 +5,7 @@ import "../styles/window.css";
 
 const MintWindow = () => {
   const windowRef = useRef<HTMLDivElement>(null);
+  const titleRef = useRef<HTMLDivElement>(null); // Reference for the title bar
 
   useEffect(() => {
     const wwindow = windowRef.current;
@@ -77,18 +78,48 @@ const MintWindow = () => {
     draglu?.addEventListener("mousedown", event => resizeMouseDown(event, "lu"));
     dragld?.addEventListener("mousedown", event => resizeMouseDown(event, "ld"));
 
+    // Draggable functionality
+    const titleBar = titleRef.current;
+    let isDragging = false;
+    let dragStartX = 0;
+    let dragStartY = 0;
+
+    const onTitleMouseDown = (event: MouseEvent) => {
+      isDragging = true;
+      dragStartX = event.clientX - wwindow.offsetLeft;
+      dragStartY = event.clientY - wwindow.offsetTop;
+      event.preventDefault(); // Prevent text selection
+    };
+
+    const onTitleMouseMove = (event: MouseEvent) => {
+      if (!isDragging) return;
+      wwindow.style.left = `${event.clientX - dragStartX}px`;
+      wwindow.style.top = `${event.clientY - dragStartY}px`;
+    };
+
+    const onTitleMouseUp = () => {
+      isDragging = false;
+    };
+
+    titleBar?.addEventListener("mousedown", onTitleMouseDown);
+    document.addEventListener("mousemove", onTitleMouseMove);
+    document.addEventListener("mouseup", onTitleMouseUp);
+
     return () => {
       dragrd?.removeEventListener("mousedown", event => resizeMouseDown(event, "rd"));
       dragru?.removeEventListener("mousedown", event => resizeMouseDown(event, "ru"));
       draglu?.removeEventListener("mousedown", event => resizeMouseDown(event, "lu"));
       dragld?.removeEventListener("mousedown", event => resizeMouseDown(event, "ld"));
+      titleBar?.removeEventListener("mousedown", onTitleMouseDown);
+      document.removeEventListener("mousemove", onTitleMouseMove);
+      document.removeEventListener("mouseup", onTitleMouseUp);
     };
   }, []);
 
   return (
     <div id="desktop" className="bg desktop">
       <div ref={windowRef} id="window" className="window">
-        <div className="title no-select" id="windowTitle">
+        <div ref={titleRef} className="title no-select" id="windowTitle">
           <img className="img" src="public/Internet_Explorer_6_logo.png" alt="" />
           Enjoy Explorer
         </div>
