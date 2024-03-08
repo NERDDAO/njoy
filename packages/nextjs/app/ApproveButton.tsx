@@ -93,13 +93,12 @@ const ApproveButton: React.FC<ApproveButtonProps> = ({ contractName, spenderAddr
 
                 HERE'S THE DEAL: WE'RE ONLY ACCEPTING $ENJOY AND WILL USE IT TO CREATE SOME FARMS SO YOU CAN EARN ENJOY WHILE YOU $ENJOY OUR NFTS. ENJOY!</p>
 
-            <div className="relative bg-[url(/backdrop.jpg)] p-12  bg-cover bg-no-repeat h-96 w-96 top-0 flex flex-col" >
+            <div className="relative backdrop-blur-2xl p-12  bg-cover bg-no-repeat h-96 w-96 top-0 flex flex-col" >
 
-                <Image src="/temp.jpg" alt="backdrop" className="relative top-12" width={384} height={384} />
-                <Image src="/enjoy.png" className="relative -top-20" alt="backdrop" width={384} height={384} />
+                <Image src="/temp.png" alt="backdrop" className="relative top-0" width={384} height={384} />
 
                 <button
-                    className="relative bg-no-repeat h-24 w-52  border-2 bg-cover -top-28 left-12 p-4 bg-[url(/vwave.jpg)] text-blue-500 pt-12"
+                    className="relative bg-no-repeat h-24 w-52  border-2 bg-cover top-2 left-12 p-4 bg-[url(/vwave.jpg)] text-blue-500 pt-12"
                     onClick={handleApprove}
                     disabled={isMining}
                 >
