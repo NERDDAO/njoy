@@ -58,8 +58,8 @@ const ApproveButton: React.FC<ApproveButtonProps> = ({ contractName, spenderAddr
           </button>
         </ul>
 
-        <label className="w-80 text-rose-700 bg-no-repeat bg-cover bg-[url(/vwave.jpg)] my-4 pb-5 rounded-lg border-4 self-center ">
-          Amount<input className="text-sky-400 bg-no-repeat mx-4"></input>
+        <label className="w-80 text-blue-500 bg-no-repeat bg-cover bg-[url(/vwave.jpg)] my-4 pb-5 rounded-lg border-4 self-center ">
+          Amount<input className="text-blue-500 bg-no-repeat mx-4"></input>
         </label>
       </div>
     </div>
