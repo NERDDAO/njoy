@@ -1,10 +1,13 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "../styles/dropup.css";
 import "../styles/styles.css";
 import "../styles/window.css";
 import ApproveButton from "~~/app/ApproveButton";
 import { Howl, Howler } from 'howler';
 import { Splide, SplideSlide, SplideTrack } from '@splidejs/react-splide';
+import { useScaffoldContractWrite } from "~~/hooks/scaffold-eth";
+import { useAccount } from "wagmi";
+import { Address } from "./scaffold-eth";
 
 const MintWindow = () => {
     Howler.volume(0.05);
@@ -15,7 +18,34 @@ const MintWindow = () => {
     sound.play();
     const windowRef = useRef<HTMLDivElement>(null);
     const titleRef = useRef<HTMLDivElement>(null); // Reference for the title bar
+    const { address: connectedAddress } = useAccount();
+    const [stakeAmount, setStakeAmount] = useState(0);
 
+    const deposit = useScaffoldContractWrite({
+        contractName: "erc20StakingPool",
+        functionName: "stake",
+        args: [BigInt(stakeAmount)],
+    });
+    const withdraw = useScaffoldContractWrite({
+        contractName: "erc20StakingPool",
+        functionName: "withdraw",
+        args: [BigInt(0)],
+    });
+
+    const claim = useScaffoldContractWrite({
+        contractName: "erc20StakingPool",
+        functionName: "getReward",
+    });
+
+    const callDeposit = async () => {
+        await deposit.writeAsync();
+    };
+    const callWithdraw = async () => {
+        await withdraw.writeAsync();
+    };
+    const callClaim = async () => {
+        await claim.writeAsync();
+    };
     useEffect(() => {
         const wwindow = windowRef.current;
         if (!wwindow) return;
@@ -138,6 +168,8 @@ const MintWindow = () => {
                 <div className="drag-ld"></div>
                 <div className="content bg-[url(/ture.jpg)] bg-cover">
                     <div className="border-2 bg-cover p-4  h-full font-bold text-2xl text-white">
+                        <p className="my-2 font-medium">Connected Address:</p>
+                        <Address address={connectedAddress} />
 
                         <div className=" justify-items-center h-full w-full flex flex-col snap-center relative top-0">
                             <div className="relative bg-[url(/enjoy.png)] bg-cover bg-no-repeat h-24 w-52 top-0 left-1/2 -ml-20" /><p className="relative align-middle justify-center p-12 backdrop-blur-lg">
