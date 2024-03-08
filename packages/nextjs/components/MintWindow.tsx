@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from "react";
 import "../styles/dropup.css";
 import "../styles/styles.css";
 import "../styles/window.css";
+import ApproveButton from "~~/app/ApproveButton";
 
 const MintWindow = () => {
     const windowRef = useRef<HTMLDivElement>(null);
@@ -131,7 +132,8 @@ const MintWindow = () => {
                     <br />
                     Gm Enjoyers
                     <br />
-                    <a href="">Mint here</a>
+                    <a href="" className="border-2 bg-cover p-4 bg-[url(/ture.jpg)] text-white">Mint here</a>
+                    <ApproveButton contractName={"Token"} spenderAddress={"0x0A65EB7B31Ad4b0b9fd73cC0e2bb1788eBb393b8"} />
                 </div>
             </div>
         </div>

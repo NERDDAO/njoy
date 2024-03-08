@@ -3,31 +3,31 @@ import { ethers } from "ethers";
 import { useScaffoldContractWrite } from "~~/hooks/scaffold-eth/useScaffoldContractWrite";
 
 type ApproveButtonProps = {
-  contractName: string; // This should match the key used in your contract configurations
-  spenderAddress: string; // The address that will be approved to spend tokens
+    contractName: string; // This should match the key used in your contract configurations
+    spenderAddress: string; // The address that will be approved to spend tokens
 };
 
 const ApproveButton: React.FC<ApproveButtonProps> = ({ contractName, spenderAddress }) => {
-  const { writeAsync, isMining } = useScaffoldContractWrite({
-    contractName: "Token",
-    functionName: "approve",
-    args: [spenderAddress, ethers.constants.MaxUint256] as any,
-  });
+    const { writeAsync, isMining } = useScaffoldContractWrite({
+        contractName: "Token",
+        functionName: "approve",
+        args: [spenderAddress, ethers.MaxUint256] as any,
+    });
 
-  const handleApprove = async () => {
-    try {
-      const tx = await writeAsync();
-      console.log("Transaction result:", tx);
-    } catch (error) {
-      console.error("Approval error:", error);
-    }
-  };
+    const handleApprove = async () => {
+        try {
+            const tx = await writeAsync();
+            console.log("Transaction result:", tx);
+        } catch (error) {
+            console.error("Approval error:", error);
+        }
+    };
 
-  return (
-    <button onClick={handleApprove} disabled={isMining}>
-      {isMining ? "Approving..." : "Approve"}
-    </button>
-  );
+    return (
+        <button className="border-2 bg-cover p-4 bg-[url(/vwave.jpg)]" onClick={handleApprove} disabled={isMining}>
+            {isMining ? "Approving..." : "Approve"}
+        </button>
+    );
 };
 
 export default ApproveButton;
