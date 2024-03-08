@@ -7,6 +7,7 @@ import { BugAntIcon, MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import Dropup from "~~/components/DropUp";
 import MintWindow from "~~/components/MintWindow";
 import { Address } from "~~/components/scaffold-eth";
+import NerdSign from "~~/components/nerdSign";
 
 const Home: NextPage = () => {
     const { address: connectedAddress } = useAccount();
@@ -16,13 +17,15 @@ const Home: NextPage = () => {
                 <div className="px-5">
 
                     <div className="bg-[url(/enjoy.png)] bg-fill h-96 w-full top-0" />
-                    <p className="text-center text-lg font-caveat">
+                    <div className="text-center text-lg font-caveat">
                         gm gm gm gm gm gm gm gm gm gm gm gm gm gm gm gm gm gm gm gm gm gm gm gm gm gm gm gm <br />
                         gm gm gm gm gm gm gm gm gm gm gm gm gm gm gm gm gm gm gm gm gm gm gm gm gm gm gm gm <br />
                         gm gm gm gm gm gm gm gm gm gm gm gm gm gm gm gm gm gm gm gm gm gm gm gm gm gm gm gm <br />
+
+                        <NerdSign />
                         gm gm gm gm gm gm gm gm gm gm gm gm gm gm gm gm gm gm gm gm gm gm gm gm gm gm gm gm <br />
                         gm gm gm gm gm gm gm gm gm gm gm gm gm gm gm gm gm gm gm gm gm gm gm gm gm gm gm gm <br />
-                    </p>
+                    </div>
                 </div>
                 <div className="flex justify-center items-center gap-12 flex-col sm:flex-row">
                     <p>Dropup</p>
