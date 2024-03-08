@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { hardhat } from "viem/chains";
 import { CurrencyDollarIcon, MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { HeartIcon } from "@heroicons/react/24/outline";
@@ -10,71 +11,86 @@ import { useTargetNetwork } from "~~/hooks/scaffold-eth/useTargetNetwork";
 import { useGlobalState } from "~~/services/store/store";
 
 /**
- * Site footer
+ * Site footer with DropUp content integrated
  */
 export const Footer = () => {
   const nativeCurrencyPrice = useGlobalState(state => state.nativeCurrencyPrice);
   const { targetNetwork } = useTargetNetwork();
   const isLocalNetwork = targetNetwork.id === hardhat.id;
+  const dropupContentRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropupContentRef.current && !dropupContentRef.current.contains(event.target as Node)) {
+        dropupContentRef.current.classList.remove("dropup-show");
+      }
+    };
+
+    window.addEventListener("click", handleClickOutside);
+
+    return () => {
+      window.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
+
+  const toggleUp = () => {
+    dropupContentRef.current?.classList.toggle("dropup-show");
+  };
 
   return (
-    <div className="min-h-0 py-5 px-1 mb-11 lg:mb-0">
-      <div>
-        <div className="fixed flex justify-between items-center w-full z-10 p-4 bottom-0 left-0 pointer-events-none">
-          <div className="flex flex-col md:flex-row gap-2 pointer-events-auto">
-            {nativeCurrencyPrice > 0 && (
-              <div>
-                <div className="btn btn-primary btn-sm font-normal gap-1 cursor-auto">
-                  <CurrencyDollarIcon className="h-4 w-4" />
-                  <span>{nativeCurrencyPrice}</span>
+    <div>
+      {/* DropUp Content */}
+      <div ref={dropupContentRef} className="dropflex w-full">
+        <nav className="navbar dropnav fixed-bottom navbar-light no-padding no-select">
+          <div className="dropup no-margin-navbar">
+            <div onClick={toggleUp} className="start-btn no-padding">
+              <Image src="/winxpstart.png" width="110" height="35" alt="" className="start-btn no-margin-navbar" />
+            </div>
+            <div className="dropup-content" id="start-content">
+              <div className="start-title">
+                <div className="start-title-img">
+                  <Image width="30" height="30" src="/chess.bmp" alt="" />
+                </div>
+                <div>
+                  <b>User</b>
                 </div>
               </div>
-            )}
-            {isLocalNetwork && (
-              <>
-                <Faucet />
-                <Link href="/blockexplorer" passHref className="btn btn-primary btn-sm font-normal gap-1">
-                  <MagnifyingGlassIcon className="h-4 w-4" />
-                  <span>Block Explorer</span>
-                </Link>
-              </>
-            )}
-          </div>
-          <SwitchTheme className={`pointer-events-auto ${isLocalNetwork ? "self-end md:self-auto" : ""}`} />
-        </div>
-      </div>
-      <div className="w-full">
-        <ul className="menu menu-horizontal w-full">
-          <div className="flex justify-center items-center gap-2 text-sm w-full">
-            <div className="text-center">
-              <a href="https://github.com/scaffold-eth/se-2" target="_blank" rel="noreferrer" className="link">
-                Fork me
-              </a>
-            </div>
-            <span>·</span>
-            <div className="flex justify-center items-center gap-2">
-              <p className="m-0 text-center">
-                Built with <HeartIcon className="inline-block h-4 w-4" /> at
-              </p>
-              <a
-                className="flex justify-center items-center gap-1"
-                href="https://buidlguidl.com/"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <BuidlGuidlLogo className="w-3 h-5 pb-1" />
-                <span className="link">BuidlGuidl</span>
-              </a>
-            </div>
-            <span>·</span>
-            <div className="text-center">
-              <a href="https://t.me/joinchat/KByvmRe5wkR-8F_zz6AjpA" target="_blank" rel="noreferrer" className="link">
-                Support
-              </a>
+              <div className="start-span"></div>
+              <div className="start-linklist-left">
+                <a className="start-link" target="_blank" href="https://enjoy.tech/">
+                  <div className="start-option">
+                    <Image width="30" height="30" src="/zora.png" alt="" />
+                    Enjoyyy
+                  </div>
+                </a>
+                <a className="start-link" target="_blank" href="https://explorer.zora.energy/">
+                  <div className="start-option">
+                    <Image width="30" height="30" src="/zora-explora.png" alt="" />
+                    Zora the Explora
+                  </div>
+                </a>
+                <a className="start-link" target="_blank" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
+                  <div className="start-option">
+                    <Image width="30" height="30" src="/rick.jpg" alt="" />
+                    Troll line
+                  </div>
+                </a>
+              </div>
+              <div className="start-linklist-right">
+                <div className="start-option">
+                  <Image width="30" height="30" src="/Internet_Explorer_6_logo.png" alt="" />
+                  <a className="start-link" target="_blank" href="https://pixabay.com/images/search/cute%20cat/">
+                    cat pix
+                  </a>
+                </div>
+              </div>
+              <div className="start-footer"></div>
             </div>
           </div>
-        </ul>
+        </nav>
       </div>
     </div>
   );
 };
+
+export default Footer;
