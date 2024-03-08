@@ -25,10 +25,10 @@ const ApproveButton: React.FC<ApproveButtonProps> = ({ contractName, spenderAddr
     };
 
     return (
-        <div className="flex flex-col align-middle">
+        <div className="relative flex flex-col snap-center">
 
             <button
-                className="relative bg-no-repeat h-24 w-52 bottom-0 left-1/2 -ml-20 border-2 bg-cover p-4 bg-[url(/vwave.jpg)] text-blue-500"
+                className="bg-no-repeat h-24 w-52 bottom-0  border-2 bg-cover p-4 bg-[url(/vwave.jpg)] text-blue-500"
                 onClick={handleApprove}
                 disabled={isMining}
             >

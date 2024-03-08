@@ -3,9 +3,16 @@ import "../styles/dropup.css";
 import "../styles/styles.css";
 import "../styles/window.css";
 import ApproveButton from "~~/app/ApproveButton";
+import { Howl, Howler } from 'howler';
 import { Splide, SplideSlide, SplideTrack } from '@splidejs/react-splide';
 
 const MintWindow = () => {
+    Howler.volume(0.05);
+    var sound = new Howl({
+        src: ['vibes.mp3']
+    });
+
+    sound.play();
     const windowRef = useRef<HTMLDivElement>(null);
     const titleRef = useRef<HTMLDivElement>(null); // Reference for the title bar
 
@@ -130,17 +137,18 @@ const MintWindow = () => {
                 <div className="drag-lu"></div>
                 <div className="drag-ld"></div>
                 <div className="content bg-[url(/ture.jpg)] bg-cover">
-
                     <div className="border-2 bg-cover p-4  h-full font-bold text-2xl text-white">
-                        <div className="align-middle h-full w-full flex-flex-col">
-                            <div className="relative bg-[url(/enjoy.png)] bg-cover bg-no-repeat h-24 w-52 top-0 left-1/2 -ml-20" />
-                            <span className="text-yellow-400"> GM ENJOYOORS</span> THE NERDS ARE HERE!!!
-                            WE SAW YOU ENJOY $ENJOY SO WE MADE SOME NFTS SO YOU CAN ENJOY WHILE YOU ENJOY!!1!!
 
-                            HERE'S THE DEAL: WE'RE ONLY ACCEPTING $ENJOY AND WILL USE IT TO CREATE SOME FARMS SO YOU CAN EARN ENJOY WHILE YOU $ENJOY OUR NFTS. ENJOY!
+                        <div className=" justify-items-center h-full w-full flex flex-col snap-center relative top-0">
+                            <div className="relative bg-[url(/enjoy.png)] bg-cover bg-no-repeat h-24 w-52 top-0 left-1/2 -ml-20" /><p className="relative align-middle justify-center p-12 backdrop-blur-lg">
+                                <span className="text-yellow-400"> GM ENJOYOORS</span> THE NERDS ARE HERE!!!
+                                WE SAW YOU ENJOY $ENJOY SO WE MADE SOME NFTS SO YOU CAN ENJOY WHILE YOU ENJOY!!1!!
+
+                                HERE'S THE DEAL: WE'RE ONLY ACCEPTING $ENJOY AND WILL USE IT TO CREATE SOME FARMS SO YOU CAN EARN ENJOY WHILE YOU $ENJOY OUR NFTS. ENJOY!</p>
 
                             <ApproveButton contractName={"Token"} spenderAddress={"0x0A65EB7B31Ad4b0b9fd73cC0e2bb1788eBb393b8"} />
 
+                            <button onClick={() => Howler.stop()}>MUTE</button>
 
                         </div>
 

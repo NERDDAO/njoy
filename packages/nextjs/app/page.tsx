@@ -12,12 +12,7 @@ import { Howl, Howler } from 'howler';
 
 const Home: NextPage = () => {
     const { address: connectedAddress } = useAccount();
-    Howler.volume(0.05);
-    var sound = new Howl({
-        src: ['vibes.mp3']
-    });
 
-    sound.play();
     return (
         <>
             <div className="flex items-center flex-col flex-grow pt-10 bgimg font-caveat">
@@ -35,10 +30,9 @@ const Home: NextPage = () => {
                     </div>
                 </div>
                 <div className="flex justify-center items-center gap-12 flex-col sm:flex-row">
-                    <p>Dropup</p>
-                    <Dropup contentId="8888" />
                     <MintWindow />
                 </div>
+
             </div>
         </>
     );
