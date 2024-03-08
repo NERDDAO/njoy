@@ -2,12 +2,15 @@ import React from "react";
 import Image from "next/image";
 import { ethers } from "ethers";
 import { useScaffoldContractWrite } from "~~/hooks/scaffold-eth/useScaffoldContractWrite";
+import { Howl, Howler } from 'howler';
 
 type ApproveButtonProps = {
     contractName: string; // This should match the key used in your contract configurations
     spenderAddress: string; // The address that will be approved to spend tokens
 };
-
+var sound = new Howl({
+    src: ['clicky.mp3']
+});
 const ApproveButton: React.FC<ApproveButtonProps> = ({ contractName, spenderAddress }) => {
     const { writeAsync, isMining } = useScaffoldContractWrite({
         contractName: "Token",
@@ -16,12 +19,14 @@ const ApproveButton: React.FC<ApproveButtonProps> = ({ contractName, spenderAddr
     });
 
     const handleApprove = async () => {
+        sound.play();
         try {
             const tx = await writeAsync();
             console.log("Transaction result:", tx);
         } catch (error) {
             console.error("Approval error:", error);
         }
+
     };
 
     return (
