@@ -63,7 +63,7 @@ const ApproveButton: React.FC<ApproveButtonProps> = ({ contractName, spenderAddr
         await mint.writeAsync();
     };
 
-    var sound = new Howl({
+    const sound = new Howl({
         src: ['clicky.mp3']
     });
     const { writeAsync, isMining } = useScaffoldContractWrite({
@@ -97,7 +97,7 @@ const ApproveButton: React.FC<ApproveButtonProps> = ({ contractName, spenderAddr
                 <span className="text-yellow-400"> GM ENJOYOORS</span> THE NERDS ARE HERE!!!
                 WE SAW YOU ENJOY $ENJOY SO WE MADE SOME NFTS SO YOU CAN ENJOY WHILE YOU ENJOY!!1!!
 
-                HERE'S THE DEAL: WE'RE ONLY ACCEPTING $ENJOY AND WILL USE IT TO CREATE SOME FARMS SO YOU CAN EARN ENJOY WHILE YOU $ENJOY OUR NFTS. ENJOY!</p>
+                HERES THE DEAL: WE ARE RE ONLY ACCEPTING $ENJOY AND WILL USE IT TO CREATE SOME FARMS SO YOU CAN EARN ENJOY WHILE YOU $ENJOY OUR NFTS. ENJOY!</p>
 
             <div className="relative backdrop-blur-2xl p-12  bg-cover bg-no-repeat h-96 w-96 top-0 flex flex-col" >
 
